@@ -1,0 +1,7 @@
+info:
+  group: "@project.groupId@"
+  artifact: "@project.artifactId@"
+  name: "@project.name@"
+  description: "@project.description@"
+  version: "@project.version@"
+  contact: 정성현 <hashmap27@gmail.com> or <public27@naver.com>
