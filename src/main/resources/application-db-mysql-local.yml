@@ -1,0 +1,26 @@
+#[db-mysql-local] profile: local MYSQL 설정
+spring:
+  datasource:
+    #
+    # [JDBC 로깅 드라이버 설정]
+    #
+    # 기본 드라이버: com.mysql.jdbc.Driver
+    #
+    # log4jdbc 드라이버: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    # urlprefix 설정: jdbc:log4jdbc:mysql://~~~~~
+    # 세부설정: log4jdbc.log4j2.properties 파일 수정
+    #
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: "jdbc:log4jdbc:mysql://loaclhost:3306/testdb"
+    username: dev
+    password: 1q2w3e$R
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      test-on-borrow: true  #test 커넥션을 커넥션 풀에서 실행했는지 테스트 여부
+      validation-query: select 1  #호출자나 풀에서 커넥션이 반환되지 전에 커넥션이 유효한지 검증하는데 사용할 쿼리
+      min-idle: 2   #풀에서 유지할 최소 커넥션 개수(DBCP와 톰캑 커넥션 풀과 함께 사용하는 옵션)
+      max-idle: 10  #커넥션 품에 유지될 수 있는 최대 유휴 커넥션 개수
+      max-total: 100  #커넥션 품에 최대 활성화될 수 있는 커넥션 개수
+      log-abandoned: true
+      log-expired-connections: true
+      abandoned-usage-tracking: true
