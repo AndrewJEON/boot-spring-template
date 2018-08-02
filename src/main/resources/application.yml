@@ -4,16 +4,38 @@ info:
   name: "@project.name@"
   description: "@project.description@"
   version: "@project.version@"
+  java-version: "@java.version@"
   contact: 정성현 <hashmap27@gmail.com> or <public27@naver.com>
+  application-name: ${spring.application.name}
+
 server:
   port: 8081
   servlet:
     session:
       cookie:
-        http-only: true
-        secure: true
+        http-only: true #브라우저 접근불가 쿠기여부
+        secure: true  #HTTPS전용쿠키여부
   compression:
     enabled: true
   error:
     whitelabel:
-      enabled: false 
+      enabled: false
+
+spring:
+  application:
+    name: "@project.artifactId@"
+  http:
+    encoding:
+      charset: UTF-8  #HTTP 요청과 응답에 사용할 문자 집합, 명시적인 헤더 설정이 없을 때는 콘텐츠 타입에 추가(default: UTF-8)
+      enabled: true   #HTTP인코딩 지원 활성화 여부(default: true)
+      force: true     #HTTP 요청과 응답의 인코딩으로 문자 집합을 강제로 구성할지 여부(default: true)
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ #Spring MVC 뷰 접두어
+      suffix: .jsp            #Spring MVC 뷰 접미어
+  devtools:
+    livereload:
+      enabled: false  #livereload.com 호환서버 활성화 여부 
+    restart:
+      exclude: static/**, templates/**, mybatis/**  #완전한 재시작 발동에서 제외할 패턴
+      enabled: false  #자동 재시작 활성화 여부
