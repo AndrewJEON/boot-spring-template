@@ -2,6 +2,7 @@ package com.boot.template.config.springconfig;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
 
+import com.boot.template.framework.web.log.ControllerLoggingAspect;
+
 /**
  * Spring Web MVC Configuration 확장
  *
@@ -17,6 +20,11 @@ import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Bean
+    public ControllerLoggingAspect controllerLoggingAspect() {
+        return new ControllerLoggingAspect();
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
