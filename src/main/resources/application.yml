@@ -39,3 +39,17 @@ spring:
     restart:
       exclude: static/**, templates/**, mybatis/**  #완전한 재시작 발동에서 제외할 패턴
       enabled: false  #자동 재시작 활성화 여부
+
+#[Spring jackson 관련 설정]
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"             #날짜 포맷 문자열 이나 완전한 날짜 포맷 클래스 이름
+    joda-date-time-format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"   #Joda날짜.시간 포맷 문자열. 이 값을 구성하지 않을 떄 포맷 문자열이 구성되어 있다면 date-format이 기본값으로 사용됨.
+    time-zone: Asia/Seoul   #날짜 포매팅시 사용할 시간대. Asia/Seoul 또는 GMT+10과 같이 인식 가능한 시간대 식별자로 지정.
+    default-property-inclusion: non-null
+    serialization:    #jackson 자바 객체 직렬화 기능의 옵션 (비)활성
+      write-dates-as-timestamps: false
+      write-dates-with-zone-id: false
+    deserialization:  #jackson 자바 객체 역직렬화 기능의 옵션 (비)활성
+      fail-on-unknown-properties: false
+    mapper:   #일반적인 jackon 기능의 옵션 (비)활성
+      sort-properties-alphabetically: false
