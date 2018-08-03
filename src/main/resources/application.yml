@@ -53,3 +53,7 @@ spring:
       fail-on-unknown-properties: false
     mapper:   #일반적인 jackon 기능의 옵션 (비)활성
       sort-properties-alphabetically: false
+
+#[Logging 설정]
+logging:
+  config: classpath:logback-spring.xml
