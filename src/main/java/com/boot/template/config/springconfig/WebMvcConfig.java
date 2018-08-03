@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
 
 import com.boot.template.framework.web.log.ControllerLoggingAspect;
+import com.boot.template.interceptor.TemplateInterceptor;
 
 /**
  * Spring Web MVC Configuration 확장
@@ -21,9 +23,16 @@ import com.boot.template.framework.web.log.ControllerLoggingAspect;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    /** Controller AOP 로깅 */
     @Bean
     public ControllerLoggingAspect controllerLoggingAspect() {
         return new ControllerLoggingAspect();
+    }
+
+    /** Interceptor */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new TemplateInterceptor());
     }
 
     @Override
