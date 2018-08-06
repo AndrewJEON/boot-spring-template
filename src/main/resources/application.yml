@@ -79,6 +79,13 @@ mybatis:
   - "classpath:mybatis/mapper/**/*.xml"
   - "mybatis/mapper/**/*.xml"
 
+#[Actuator 설정]
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #Actuator 정보 모두 노출처리. 필요한 내용만 노출하기 위해서는 health,info 식으로 구성.
+
 #[Logging 설정]
 logging:
   config: classpath:logback-spring.xml
